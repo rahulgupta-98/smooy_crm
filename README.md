@@ -5,27 +5,31 @@ Phone-friendly loyalty CRM with:
 - **Staff**: staff portal to grant stamps and mark each stamp as `Redeemed` or `Expired`.
 
 ### Architecture
-- **Plain JavaScript** (no React/Vue) with ES6 modules
-- **Static HTML** + JS for dynamic parts (show/hide views, `innerHTML` / `createElement` for lists)
-- **No backend** — currently runs on mock data. AWS DynamoDB integration planned for later.
+- **React** + **Vite** + **React Router**
+- **No backend** — runs on mock data. API endpoints for AWS DynamoDB planned for later.
 
 ### Folder overview
-- `customer/`: customer-facing web UI
-- `staff/`: staff portal web UI
-- `shared/`: shared CSS + configuration loader
-- `assets/`: images and branding
-- `supabase/migrations/`: legacy SQL schema (kept as reference for future DDB modeling)
+- `src/`: React app
+  - `pages/`: Home, Customer, Staff
+  - `components/`: Layout, StampSymbol
+  - `config.js`, `utils.js`
+- `public/assets/`: images
+- `supabase/migrations/`: legacy SQL (reference for future DDB)
 
 ### Configure
-Edit `shared/config.js` (or copy from `config.example.js`) to set store name and mock data for demo.
+Edit `src/config.js` to set store name and mock data.
 
 ### Run locally
 ```bash
-python -m http.server 8001
+npm install
+npm run dev
 ```
-Then open:
-- Customer UI: `http://localhost:8001/customer/`
-- Staff UI: `http://localhost:8001/staff/`
+Then open http://localhost:5173 (or the port Vite shows).
 
-### Deploy (GitHub Pages)
-Deploy this folder to a GitHub Pages site. Include `shared/config.js` in the deployed output.
+Routes: `/` (home), `/customer`, `/staff`
+
+### Build
+```bash
+npm run build
+```
+Output in `dist/` — deploy to S3 + CloudFront or Amplify.
