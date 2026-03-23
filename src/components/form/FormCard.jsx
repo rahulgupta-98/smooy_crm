@@ -1,6 +1,8 @@
 import { Box, Heading, Stack, Text } from '@chakra-ui/react';
 
 export default function FormCard({ title, subtitle, gap = 2, children }) {
+  const hasSubtitle = subtitle != null && subtitle !== '';
+
   return (
     <Box
       w="full"
@@ -15,10 +17,14 @@ export default function FormCard({ title, subtitle, gap = 2, children }) {
           <Heading as="h2" size="lg" fontWeight="bold" textAlign="center">
             {title}
           </Heading>
-          <Box h="1px" bg="gray.300" />
-          <Text fontSize="sm" color="gray.600" textAlign="center">
-            {subtitle}
-          </Text>
+          {hasSubtitle ? (
+            <>
+              <Box h="1px" bg="gray.300" />
+              <Text fontSize="sm" color="gray.600" textAlign="center">
+                {subtitle}
+              </Text>
+            </>
+          ) : null}
         </Stack>
         {children}
       </Stack>
