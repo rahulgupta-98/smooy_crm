@@ -13,12 +13,8 @@ export default function StaffEnrollMember() {
   const dob = useInputValue('')
 
   const handleEnroll = () => {
-    console.log('enroll member', {
-      fullName: fullName.value,
-      phone: phone.value,
-      email: email.value,
-      dob: dob.value,
-    })
+    const name = (fullName.value || 'New Member').trim()
+    navigate(`/staff-customer-profile?name=${encodeURIComponent(name)}`)
   }
 
   return (

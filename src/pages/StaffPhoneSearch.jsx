@@ -9,7 +9,9 @@ export default function StaffPhoneSearch() {
   const phone = useInputValue('')
 
   const handleSearch = () => {
-    console.log('search phone', phone.value)
+    // Simulated lookup -- replace with real API call when backend is ready
+    const customerName = 'Sarah Miller'
+    navigate(`/staff-customer-profile?name=${encodeURIComponent(customerName)}`)
   }
 
   return (

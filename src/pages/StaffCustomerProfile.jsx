@@ -4,21 +4,10 @@ import { Box, HStack, Stack, Text } from '@chakra-ui/react'
 import { Layout } from '../components/layout'
 import { GlassCard, QrButton, StampCard } from '../components/customer/RewardsComponents'
 import { useRewards } from '../context/RewardsContext'
-
-const STATUS_OPTIONS = [
-  { value: 'redeemable', label: 'Redeemable', color: '#16a34a' },
-  { value: 'redeemed', label: 'Redeemed', color: '#d9368b' },
-  { value: 'expired', label: 'Expired', color: '#6b7280' },
-]
-
-const STATUS_ICONS = {
-  redeemable: { icon: '✅', color: '#16a34a' },
-  redeemed: { icon: '✖', color: '#d9368b' },
-  expired: { icon: '✔', color: '#6b7280' },
-}
+import { REWARD_STATUSES, REWARD_STATUS_MAP } from '../constants/rewardStatus'
 
 function StatusDropdown({ value, onChange }) {
-  const current = STATUS_OPTIONS.find((o) => o.value === value) || STATUS_OPTIONS[0]
+  const current = REWARD_STATUS_MAP[value] || REWARD_STATUSES[0]
 
   return (
     <Box position="relative" flexShrink={0}>
@@ -45,7 +34,7 @@ function StatusDropdown({ value, onChange }) {
           '&:focus': { boxShadow: `0 0 0 2px ${current.color}33` },
         }}
       >
-        {STATUS_OPTIONS.map((opt) => (
+        {REWARD_STATUSES.map((opt) => (
           <option key={opt.value} value={opt.value}>
             {opt.label}
           </option>
@@ -67,7 +56,7 @@ function StatusDropdown({ value, onChange }) {
 }
 
 function StaffRewardRow({ label, desc, status, onStatusChange }) {
-  const iconInfo = STATUS_ICONS[status] || STATUS_ICONS.redeemable
+  const iconInfo = REWARD_STATUS_MAP[status] || REWARD_STATUS_MAP.redeemable
 
   return (
     <HStack

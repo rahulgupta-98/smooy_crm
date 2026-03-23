@@ -9,11 +9,6 @@ export default function StaffLogin() {
   const password = useInputValue('')
 
   const handleSubmit = () => {
-    console.log('staff login', {
-      staffIdOrEmail: staffIdOrEmail.value,
-      password: password.value,
-    })
-    // For now, route to Staff Home.
     navigate('/staff-home')
   }
 
@@ -25,9 +20,8 @@ export default function StaffLogin() {
         password={password.value}
         onPasswordChange={password.onChange}
         onSubmit={handleSubmit}
-        onForgotPassword={() => console.log('forgot staff password')}
+        onForgotPassword={() => {}}
       />
     </Layout>
   )
 }
-

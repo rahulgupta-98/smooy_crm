@@ -1,12 +1,7 @@
 import { HStack, Stack, Text } from '@chakra-ui/react'
 import { GlassCard, QrButton, StampCard } from './RewardsComponents'
 import { useRewards } from '../../context/RewardsContext'
-
-const STATUS_DISPLAY = {
-  redeemable: { icon: '✅', label: 'Redeemable', color: '#16a34a' },
-  redeemed: { icon: '✖', label: 'Redeemed', color: '#d9368b' },
-  expired: { icon: '✔', label: 'Expired', color: '#6b7280' },
-}
+import { REWARD_STATUS_MAP } from '../../constants/rewardStatus'
 
 function RewardRow({ icon, label, desc, statusLabel, statusColor }) {
   return (
@@ -56,7 +51,7 @@ export default function CustomerRewardsCard({ customerName = 'Sarah' }) {
           Your Rewards
         </Text>
         {rewards.map((reward) => {
-          const display = STATUS_DISPLAY[reward.status] || STATUS_DISPLAY.redeemable
+          const display = REWARD_STATUS_MAP[reward.status] || REWARD_STATUS_MAP.redeemable
           return (
             <RewardRow
               key={reward.id}

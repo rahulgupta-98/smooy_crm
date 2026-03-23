@@ -8,7 +8,7 @@ export default function StaffQrScanner() {
   const navigate = useNavigate()
 
   const handleScanSuccess = (decodedText) => {
-    console.log('QR scanned:', decodedText)
+    navigate(`/staff-customer-profile?name=${encodeURIComponent(decodedText)}`)
   }
 
   return (
